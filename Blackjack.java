@@ -10,6 +10,9 @@ class Blackjack {
 		deelStartHand();
 		System.out.println(Bank.kaartenHand);
 		System.out.println(Gokker.kaartenHand);
+		System.out.println(getSomHand(Bank.kaartenHand));
+		System.out.println(getSomHand(Gokker.kaartenHand));
+		winCheck();
 	}
 	
 	public static void deelStartHand(){
@@ -19,6 +22,24 @@ class Blackjack {
 		for(int i = 0; i < 2; i++){
 			Gokker.kaartenHand.add(getKaart(dekSpeelkaarten));
 		}		
+	}
+
+	public static void winCheck() {
+		if(getSomHand(Bank.kaartenHand) > getSomHand(Gokker.kaartenHand)) {
+			System.out.println("De Bank wint..");
+		} else if (getSomHand(Bank.kaartenHand) < getSomHand(Gokker.kaartenHand)) {
+			System.out.println("De Gokker wint!");
+		} else 
+			System.out.println("Geen winnaars & geen verliezers.");
+		
+	}
+
+	public static int getSomHand(ArrayList<Integer> arraylist) {
+		int total = 0;	
+		for(int kaart : arraylist)
+			total += kaart;
+		
+		return total;
 	}
 
 	public static int getKaart(int[] array) {
